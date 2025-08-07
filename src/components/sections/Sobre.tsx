@@ -1,26 +1,26 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
-const setores = [
+const valores = [
   {
-    titulo: "Software Houses",
-    descricao: "Empresas de desenvolvimento que precisam otimizar processos internos, melhorar a experiência do cliente e escalar suas operações com tecnologia."
+    titulo: "Proximidade",
+    descricao: "Estamos sempre próximos, entendendo suas necessidades e acompanhando cada etapa do processo."
   },
   {
-    titulo: "Consultorias de TI",
-    descricao: "Consultorias que buscam automatizar processos de gestão de projetos, melhorar a comunicação com clientes e otimizar suas entregas."
+    titulo: "Empatia",
+    descricao: "Colocamos-nos no seu lugar para criar soluções que realmente fazem sentido para seu negócio."
   },
   {
-    titulo: "Startups",
-    descricao: "Startups em crescimento que precisam de soluções digitais escaláveis para automatizar processos, melhorar a experiência do usuário e acelerar o crescimento."
+    titulo: "Personalização",
+    descricao: "Cada solução é única, desenvolvida especificamente para suas necessidades e objetivos."
   },
   {
-    titulo: "Profissionais Digitais",
-    descricao: "Advogados, contadores, arquitetos e criativos que precisam digitalizar seus processos, melhorar a gestão de clientes e otimizar suas operações."
+    titulo: "Confiança",
+    descricao: "Construímos relacionamentos duradouros baseados em transparência e resultados comprovados."
   },
   {
-    titulo: "Varejo e Serviços",
-    descricao: "Academias, escolas, restaurantes e varejistas que buscam soluções para gestão de clientes, automação de processos e melhoria da experiência do usuário."
+    titulo: "Visão de futuro",
+    descricao: "Pensamos no amanhã, criando soluções escaláveis que crescem junto com seu negócio."
   }
 ];
 
@@ -46,9 +46,9 @@ const cardVariants = {
   }
 };
 
-const ICP = () => {
+const Sobre = () => {
   return (
-    <section id="icp" className="py-20">
+    <section id="sobre" className="py-20">
       <div className="container max-w-6xl">
         <motion.header 
           className="text-center mb-16 space-y-4"
@@ -57,12 +57,14 @@ const ICP = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">Quem atendemos</span>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Especialistas em resolver dores reais
+          <span className="inline-block rounded-full border border-[#F8F8FF]/30 px-3 py-1 text-xs tracking-wide text-[#F8F8FF]/70">
+            Sobre nós
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8FF]">
+            Onde sua visão encontra forma, função e alma
           </h2>
-          <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
-            Somos especialistas em resolver dores de pequenas e médias empresas de tecnologia, consultorias, profissionais digitais e negócios de serviços operacionais que precisam sair do improviso, automatizar processos e escalar sem perder controle.
+          <p className="mx-auto max-w-3xl text-lg text-[#F8F8FF]/80">
+            Aqui, cada solução tem propósito, clareza e é construída junto com você. Conectamos estratégia, tecnologia e pessoas para gerar resultados reais.
           </p>
         </motion.header>
 
@@ -79,9 +81,9 @@ const ICP = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
             variants={cardVariants}
           >
-            {setores.slice(0, 3).map((setor, index) => (
+            {valores.slice(0, 3).map((valor, index) => (
               <motion.div
-                key={setor.titulo}
+                key={valor.titulo}
                 variants={cardVariants}
                 whileHover={{ 
                   scale: 1.05, 
@@ -95,17 +97,17 @@ const ICP = () => {
               >
                 <Card className="bg-background/30 border-border/30 h-full relative overflow-hidden">
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#F8F8FF]/5 to-[#F8F8FF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Border effect on hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-lg transition-colors duration-300" />
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#F8F8FF]/30 rounded-lg transition-colors duration-300" />
                   
                   <CardContent className="p-6 relative">
-                    <h3 className="text-xl font-semibold mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
-                      {setor.titulo}
+                    <h3 className="text-xl font-semibold mb-3 text-[#F8F8FF] group-hover:text-[#F8F8FF]/80 transition-colors duration-300">
+                      {valor.titulo}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                      {setor.descricao}
+                    <p className="text-[#F8F8FF]/70 leading-relaxed group-hover:text-[#F8F8FF]/90 transition-colors duration-300">
+                      {valor.descricao}
                     </p>
                   </CardContent>
                 </Card>
@@ -118,9 +120,9 @@ const ICP = () => {
             className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl"
             variants={cardVariants}
           >
-            {setores.slice(3, 5).map((setor, index) => (
+            {valores.slice(3, 5).map((valor, index) => (
               <motion.div
-                key={setor.titulo}
+                key={valor.titulo}
                 variants={cardVariants}
                 whileHover={{ 
                   scale: 1.05, 
@@ -134,17 +136,17 @@ const ICP = () => {
               >
                 <Card className="bg-background/30 border-border/30 h-full relative overflow-hidden">
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#F8F8FF]/5 to-[#F8F8FF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Border effect on hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-lg transition-colors duration-300" />
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#F8F8FF]/30 rounded-lg transition-colors duration-300" />
                   
                   <CardContent className="p-6 relative">
-                    <h3 className="text-xl font-semibold mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
-                      {setor.titulo}
+                    <h3 className="text-xl font-semibold mb-3 text-[#F8F8FF] group-hover:text-[#F8F8FF]/80 transition-colors duration-300">
+                      {valor.titulo}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
-                      {setor.descricao}
+                    <p className="text-[#F8F8FF]/70 leading-relaxed group-hover:text-[#F8F8FF]/90 transition-colors duration-300">
+                      {valor.descricao}
                     </p>
                   </CardContent>
                 </Card>
@@ -160,10 +162,10 @@ const ICP = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20">
-            <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
-            <p className="text-lg font-medium">
-              Não se vê na lista? Fale conosco sobre sua necessidade específica.
+          <div className="inline-flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-[#F8F8FF]/10 to-[#F8F8FF]/5 border border-[#F8F8FF]/20">
+            <div className="w-3 h-3 bg-[#F8F8FF] rounded-full animate-pulse"></div>
+            <p className="text-lg font-medium text-[#F8F8FF]">
+              Feito com propósito, empatia e inovação.
             </p>
           </div>
         </motion.div>
@@ -172,4 +174,4 @@ const ICP = () => {
   );
 };
 
-export default ICP;
+export default Sobre;

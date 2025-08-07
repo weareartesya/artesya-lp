@@ -138,3 +138,84 @@ All colors MUST be HSL.
     .pointer-glow::after { display: none; }
   }
 }
+
+/* Enhanced animation styles */
+@layer components {
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Button hover effects */
+  .btn-hover {
+    transition: all 0.3s ease-out;
+  }
+  
+  .btn-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+  }
+  
+  .card-hover:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Link underline animation */
+  .link-underline {
+    position: relative;
+  }
+  
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease-out;
+  }
+  
+  .link-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Icon hover effects */
+  .icon-hover {
+    transition: all 0.2s ease-out;
+  }
+  
+  .icon-hover:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-hover,
+    .card-hover,
+    .icon-hover {
+      transition: none;
+    }
+    
+    .btn-hover:hover,
+    .card-hover:hover,
+    .icon-hover:hover {
+      transform: none;
+    }
+  }
+}

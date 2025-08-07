@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
+import Sobre from "@/components/sections/Sobre";
 import ICP from "@/components/sections/ICP";
 import Manifesto from "@/components/sections/Manifesto";
 import Produtos from "@/components/sections/Produtos";
@@ -7,6 +8,7 @@ import Metrics from "@/components/sections/Metrics";
 import Fluxo from "@/components/sections/Fluxo";
 import ProvaSocial from "@/components/sections/ProvaSocial";
 import FAQ from "@/components/sections/FAQ";
+import CTAs from "@/components/sections/CTAs";
 import Footer from "@/components/layout/Footer";
 import { useEffect } from "react";
 
@@ -38,6 +40,7 @@ const Index = () => {
     <main>
       <Navbar />
       <Hero />
+      <Sobre />
       <ICP />
       <Manifesto />
       <Produtos />
@@ -45,6 +48,7 @@ const Index = () => {
       <Fluxo />
       <ProvaSocial />
       <FAQ />
+      <CTAs />
       <Footer />
     </main>
   );

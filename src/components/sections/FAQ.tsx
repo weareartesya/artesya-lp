@@ -1,4 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { motion } from "framer-motion";
 
 const faqs = [
   {
@@ -23,22 +24,67 @@ const faqs = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
+
 const FAQ = () => {
   return (
     <section id="faq" className="py-20">
       <div className="container max-w-3xl">
-        <header className="text-center mb-8 space-y-3">
+        <motion.header 
+          className="text-center mb-8 space-y-3"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
           <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">Tire dúvidas</span>
           <h2 className="text-2xl md:text-3xl font-semibold">FAQ</h2>
-        </header>
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((item, idx) => (
-            <AccordionItem key={idx} value={`item-${idx}`}>
-              <AccordionTrigger className="text-left">{item.q}</AccordionTrigger>
-              <AccordionContent>{item.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        </motion.header>
+        
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={itemVariants}
+              >
+                <AccordionItem value={`item-${idx}`}>
+                  <AccordionTrigger className="text-left hover:text-foreground transition-colors duration-200">
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );
