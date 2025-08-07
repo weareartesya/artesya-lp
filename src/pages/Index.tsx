@@ -6,7 +6,7 @@ import Produtos from "@/components/sections/Produtos";
 import Metrics from "@/components/sections/Metrics";
 import Fluxo from "@/components/sections/Fluxo";
 import ProvaSocial from "@/components/sections/ProvaSocial";
-import CTAs from "@/components/sections/CTAs";
+import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/layout/Footer";
 import { useEffect } from "react";
 
@@ -44,7 +44,7 @@ const Index = () => {
       <Metrics />
       <Fluxo />
       <ProvaSocial />
-      <CTAs />
+      <FAQ />
       <Footer />
     </main>
   );
