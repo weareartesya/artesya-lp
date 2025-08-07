@@ -31,14 +31,14 @@ const Hero = () => {
       <div className="relative container text-center space-y-6 pt-24">
         <div className="font-serif text-3xl md:text-4xl opacity-90 select-none">Artesya</div>
         <h1 className="mx-auto max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
-          Transformamos seus desafios em soluções digitais sob medida.
+          Transformamos os desafios da sua empresa em soluções digitais sob medida, prontas para escalar.
         </h1>
         <p className="mx-auto max-w-3xl text-base md:text-lg text-muted-foreground">
-          Design e tecnologia com propósito, combinando inovação, empatia e resultados reais: eficiência, performance e impacto estratégico.
+          A Artesya resolve o improviso técnico e conecta estratégia, tecnologia e pessoas para gerar eficiência, agilidade e resultados de verdade.
         </p>
         <div className="flex items-center justify-center gap-3">
           <Button variant="hero" size="lg">
-            Participe da transformação — agende uma consultoria gratuita de 30 minutos.
+            Agende um diagnóstico gratuito e visualize um protótipo do seu futuro sistema.
           </Button>
         </div>
       </div>

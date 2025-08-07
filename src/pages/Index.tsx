@@ -1,6 +1,13 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
+import ICP from "@/components/sections/ICP";
+import Manifesto from "@/components/sections/Manifesto";
+import Produtos from "@/components/sections/Produtos";
 import Metrics from "@/components/sections/Metrics";
+import Fluxo from "@/components/sections/Fluxo";
+import ProvaSocial from "@/components/sections/ProvaSocial";
+import CTAs from "@/components/sections/CTAs";
+import Footer from "@/components/layout/Footer";
 import { useEffect } from "react";
 
 const Index = () => {
@@ -31,17 +38,14 @@ const Index = () => {
     <main>
       <Navbar />
       <Hero />
-
-      <section id="praxis" className="py-16">
-        <div className="container text-center space-y-3">
-          <span className="inline-block rounded-full border border-white/10 px-3 py-1 text-xs tracking-wide text-muted-foreground">Práxis</span>
-          <h2 className="text-2xl md:text-3xl font-semibold">
-            Cada projeto passa por etapas claras, com nome, propósito e responsabilidade — nada de escopos nebulosos.
-          </h2>
-        </div>
-      </section>
-
+      <ICP />
+      <Manifesto />
+      <Produtos />
       <Metrics />
+      <Fluxo />
+      <ProvaSocial />
+      <CTAs />
+      <Footer />
     </main>
   );
 };
