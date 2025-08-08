@@ -12,40 +12,28 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    quote: "A Artesya transformou completamente nossa operação. A eficiência aumentou 60% e os custos diminuíram significativamente.",
-    author: "Maria Silva",
+    quote: "El resultado final ha superado nuestras expectativas. Sin duda, recomendaría a Artesya a cualquier empresa que busque un equipo comprometido, talentoso y con una gran capacidad de adaptación.",
+    author: "Aridane Castillo",
     role: "CEO",
-    company: "TechStart"
+    company: "Lookby"
   },
   {
-    quote: "Profissionais excepcionais que realmente entendem o negócio. O resultado superou todas as expectativas.",
-    author: "João Santos",
-    role: "Diretor de Tecnologia",
-    company: "Inovação Digital"
+    quote: "O serviço atendeu o que estava proposto e a equipe sempre solicita para resolver eventualidades, além de ensinar como manipular o software,  total suporte na troca de conhecimento.",
+    author: "Junior Gemaque",
+    role: "Ex-Engenheiro Florestal",
+    company: "Unifloresta"
   },
   {
-    quote: "Processo transparente e resultados mensuráveis. Recomendo fortemente para qualquer empresa que queira escalar.",
-    author: "Ana Costa",
-    role: "Fundadora",
-    company: "E-commerce Plus"
+    quote: "A equipe da Artesya foi muito atenciosa comigo, sanaram todas as minhas duvidas e me deixaram muito confortavel para seguirmos o projeto. Estou extremamente satisfeita!",
+    author: "Cláudia Valle",
+    role: "CEO",
+    company: "Alquimia do Cheff"
   },
   {
-    quote: "A equipe da Artesya entregou muito além do esperado. Nossa produtividade aumentou 80% em apenas 3 meses.",
-    author: "Carlos Mendes",
-    role: "CTO",
-    company: "StartupXYZ"
-  },
-  {
-    quote: "Comunicação clara, prazos respeitados e resultados excepcionais. Parceiros de verdade para o nosso crescimento.",
-    author: "Fernanda Lima",
-    role: "Diretora de Operações",
-    company: "Digital Solutions"
-  },
-  {
-    quote: "A Artesya não só desenvolveu nossa solução, mas também nos ensinou como otimizar nossos processos internos.",
-    author: "Roberto Alves",
-    role: "Gerente de Projetos",
-    company: "Innovation Lab"
+    quote: "Extremamente profissionais, atenciosos em todos os detalhes do que pedi. Estou muito satisfeito.",
+    author: "Paulo Rivelino",
+    role: "Diretor",
+    company: "AVERTEX"
   }
 ];
 
