@@ -1,56 +1,109 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useState, useEffect } from "react";
 
-const testimonials = [
+interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  company: string;
+}
+
+const testimonials: Testimonial[] = [
   {
-    quote:
-      'A Artesya trouxe clareza e velocidade. Em poucas semanas tínhamos um protótipo validado e um roadmap sólido. O processo foi transparente e os resultados superaram nossas expectativas.',
-    author: 'Marina A.',
-    role: 'COO em edtech',
-    company: 'EduTech Solutions'
+    quote: "A Artesya transformou completamente nossa operação. A eficiência aumentou 60% e os custos diminuíram significativamente.",
+    author: "Maria Silva",
+    role: "CEO",
+    company: "TechStart"
   },
   {
-    quote:
-      'Reduzimos retrabalho e custos significativamente. O modelo modular nos deu previsibilidade sem engessar a operação. A equipe da Artesya entendeu perfeitamente nossos desafios.',
-    author: 'Rafael S.',
-    role: 'Diretor de Operações',
-    company: 'TechConsult'
+    quote: "Profissionais excepcionais que realmente entendem o negócio. O resultado superou todas as expectativas.",
+    author: "João Santos",
+    role: "Diretor de Tecnologia",
+    company: "Inovação Digital"
   },
   {
-    quote:
-      'A solução desenvolvida pela Artesya transformou completamente nossa operação. Conseguimos automatizar processos críticos e melhorar a experiência dos nossos clientes.',
-    author: 'Ana L.',
-    role: 'CEO',
-    company: 'InnovateLab'
+    quote: "Processo transparente e resultados mensuráveis. Recomendo fortemente para qualquer empresa que queira escalar.",
+    author: "Ana Costa",
+    role: "Fundadora",
+    company: "E-commerce Plus"
+  },
+  {
+    quote: "A equipe da Artesya entregou muito além do esperado. Nossa produtividade aumentou 80% em apenas 3 meses.",
+    author: "Carlos Mendes",
+    role: "CTO",
+    company: "StartupXYZ"
+  },
+  {
+    quote: "Comunicação clara, prazos respeitados e resultados excepcionais. Parceiros de verdade para o nosso crescimento.",
+    author: "Fernanda Lima",
+    role: "Diretora de Operações",
+    company: "Digital Solutions"
+  },
+  {
+    quote: "A Artesya não só desenvolveu nossa solução, mas também nos ensinou como otimizar nossos processos internos.",
+    author: "Roberto Alves",
+    role: "Gerente de Projetos",
+    company: "Innovation Lab"
   }
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
 const ProvaSocial = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setCurrentIndex((prev) => (prev + newDirection + testimonials.length) % testimonials.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
+
   return (
-    <section id="depoimentos" className="py-20">
-      <div className="container max-w-6xl">
+    <section id="depoimentos" className="py-20 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container max-w-6xl relative">
         <motion.header 
           className="text-center mb-16 space-y-4"
           initial={{ opacity: 0, y: 20 }}
@@ -58,46 +111,137 @@ const ProvaSocial = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">Prova Social</span>
-          <h2 className="text-3xl md:text-4xl font-bold">O que dizem nossos clientes</h2>
+          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">
+            Prova Social
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            O que dizem nossos clientes
+          </h2>
           <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
             Empresas que confiaram na Artesya e transformaram seus desafios em resultados reais.
           </p>
         </motion.header>
-        
+
+        {/* Carousel Container */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Navigation Buttons */}
+          <motion.button
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/20 text-foreground hover:text-accent transition-colors duration-200 shadow-lg"
+            onClick={() => paginate(-1)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </motion.button>
+
+          <motion.button
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border/20 text-foreground hover:text-accent transition-colors duration-200 shadow-lg"
+            onClick={() => paginate(1)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </motion.button>
+
+          {/* Carousel Slides */}
+          <div className="relative h-80 overflow-hidden rounded-2xl">
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 }
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = swipePower(offset.x, velocity.x);
+
+                  if (swipe < -swipeConfidenceThreshold) {
+                    paginate(1);
+                  } else if (swipe > swipeConfidenceThreshold) {
+                    paginate(-1);
+                  }
+                }}
+                className="absolute inset-0"
+              >
+                <Card className="bg-background/30 border-border/30 h-full cursor-pointer relative overflow-hidden">
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-50" />
+                  
+                  <CardContent className="p-8 h-full flex flex-col justify-center relative">
+                    {/* Quote icon */}
+                    <div className="absolute top-6 right-6 text-accent/20">
+                      <Quote className="w-8 h-8" />
+                    </div>
+                    
+                    <div className="mb-6">
+                      <p className="text-lg leading-relaxed text-foreground/90 italic">
+                        "{testimonials[currentIndex].quote}"
+                      </p>
+                    </div>
+                    
+                    <div className="border-t border-border/20 pt-4 mt-auto">
+                      <p className="font-semibold text-foreground">
+                        {testimonials[currentIndex].author}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {testimonials[currentIndex].role}
+                      </p>
+                      <p className="text-xs text-accent">
+                        {testimonials[currentIndex].company}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {testimonials.map((_, index) => (
+              <motion.button
+                key={index}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-accent scale-125' 
+                    : 'bg-border/30 hover:bg-border/50'
+                }`}
+                onClick={() => goToSlide(index)}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          viewport={{ once: true }}
         >
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={t.author}
-              variants={cardVariants}
-              whileHover={{ 
-                scale: 1.02, 
-                boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Card className="bg-background/30 border-border/30 h-full cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="mb-4">
-                    <p className="text-base leading-relaxed text-muted-foreground">"{t.quote}"</p>
-                  </div>
-                  <div className="border-t border-border/20 pt-4">
-                    <p className="font-semibold text-foreground">{t.author}</p>
-                    <p className="text-sm text-muted-foreground">{t.role}</p>
-                    <p className="text-xs text-accent">{t.company}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <div className="inline-flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20">
+            <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+            <p className="text-lg font-medium text-accent">
+              Junte-se aos nossos clientes satisfeitos
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

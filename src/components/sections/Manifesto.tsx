@@ -11,7 +11,7 @@ const Manifesto = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -21,13 +21,13 @@ const Manifesto = () => {
               Nossa Missão
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              Transformamos desafios complexos em soluções digitais elegantes e eficientes. 
-              Conectamos estratégia, tecnologia e pessoas para gerar resultados mensuráveis 
+              Transformamos desafios complexos em soluções digitais elegantes e eficientes.
+              Conectamos estratégia, tecnologia e pessoas para gerar resultados mensuráveis
               e impacto real no seu negócio.
             </p>
           </motion.div>
 
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}

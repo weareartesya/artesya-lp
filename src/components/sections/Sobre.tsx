@@ -57,13 +57,13 @@ const Sobre = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block rounded-full border border-[#F8F8FF]/30 px-3 py-1 text-xs tracking-wide text-[#F8F8FF]/70">
+          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">
             Sobre nós
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8FF]">
+          <h2 className="text-3xl md:text-4xl font-bold">
             Onde sua visão encontra forma, função e alma
           </h2>
-          <p className="mx-auto max-w-3xl text-lg text-[#F8F8FF]/80">
+          <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
             Aqui, cada solução tem propósito, clareza e é construída junto com você. Conectamos estratégia, tecnologia e pessoas para gerar resultados reais.
           </p>
         </motion.header>
@@ -97,16 +97,16 @@ const Sobre = () => {
               >
                 <Card className="bg-background/30 border-border/30 h-full relative overflow-hidden">
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#F8F8FF]/5 to-[#F8F8FF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Border effect on hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#F8F8FF]/30 rounded-lg transition-colors duration-300" />
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-lg transition-colors duration-300" />
                   
                   <CardContent className="p-6 relative">
-                    <h3 className="text-xl font-semibold mb-3 text-[#F8F8FF] group-hover:text-[#F8F8FF]/80 transition-colors duration-300">
+                    <h3 className="text-xl font-semibold mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
                       {valor.titulo}
                     </h3>
-                    <p className="text-[#F8F8FF]/70 leading-relaxed group-hover:text-[#F8F8FF]/90 transition-colors duration-300">
+                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                       {valor.descricao}
                     </p>
                   </CardContent>
@@ -136,16 +136,16 @@ const Sobre = () => {
               >
                 <Card className="bg-background/30 border-border/30 h-full relative overflow-hidden">
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#F8F8FF]/5 to-[#F8F8FF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Border effect on hover */}
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#F8F8FF]/30 rounded-lg transition-colors duration-300" />
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-lg transition-colors duration-300" />
                   
                   <CardContent className="p-6 relative">
-                    <h3 className="text-xl font-semibold mb-3 text-[#F8F8FF] group-hover:text-[#F8F8FF]/80 transition-colors duration-300">
+                    <h3 className="text-xl font-semibold mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
                       {valor.titulo}
                     </h3>
-                    <p className="text-[#F8F8FF]/70 leading-relaxed group-hover:text-[#F8F8FF]/90 transition-colors duration-300">
+                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                       {valor.descricao}
                     </p>
                   </CardContent>
@@ -162,9 +162,9 @@ const Sobre = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-[#F8F8FF]/10 to-[#F8F8FF]/5 border border-[#F8F8FF]/20">
-            <div className="w-3 h-3 bg-[#F8F8FF] rounded-full animate-pulse"></div>
-            <p className="text-lg font-medium text-[#F8F8FF]">
+          <div className="inline-flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20">
+            <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+            <p className="text-lg font-medium">
               Feito com propósito, empatia e inovação.
             </p>
           </div>

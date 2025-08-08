@@ -3,25 +3,25 @@ import { motion } from "framer-motion";
 
 const faqs = [
   {
-    q: "Qual é o diferencial da Artesya em relação a outras software houses?",
-    a: "Unimos estratégia, design e engenharia com um processo claro em etapas – da descoberta à evolução contínua – evitando escopos nebulosos e garantindo previsibilidade.",
+    q: "Como funciona o processo de desenvolvimento?",
+    a: "Nosso processo é dividido em etapas claras: descoberta, estratégia, desenvolvimento, entrega e evolução. Cada fase tem entregas específicas e validação contínua para garantir que estamos no caminho certo."
   },
   {
-    q: "Vocês oferecem soluções de inteligência artificial e automação?",
-    a: "Sim. Implementamos automações e modelos de IA quando são adequados ao problema, sempre focando em eficiência operacional e resultados mensuráveis.",
+    q: "Quanto tempo leva para desenvolver uma solução?",
+    a: "O tempo varia conforme a complexidade. Protótipos levam de 2-4 semanas, desenvolvimentos completos de 2-6 meses. Sempre trabalhamos com sprints e entregas incrementais para você ver o progresso."
   },
   {
-    q: "Como a Artesya garante a qualidade das entregas?",
-    a: "Trabalhamos com validação contínua, prototipação prévia, revisão técnica e testes de usabilidade, performance e segurança antes de cada entrega.",
+    q: "Vocês oferecem suporte após o lançamento?",
+    a: "Sim! Oferecemos planos de suporte contínuo que incluem monitoramento, atualizações de segurança, melhorias de performance e evolução da solução conforme seu negócio cresce."
   },
   {
-    q: "A Artesya trabalha com preços fixos ou modelos flexíveis?",
-    a: "Adotamos modelos flexíveis por ciclos/modulares, alinhados a objetivos e métricas. Quando faz sentido, fechamos escopos fixos para etapas específicas.",
+    q: "Como garantem a qualidade do código?",
+    a: "Utilizamos boas práticas de desenvolvimento, testes automatizados, code reviews e documentação completa. Nossas soluções são escaláveis, seguras e seguem padrões de mercado."
   },
   {
-    q: "Existe um plano de manutenção ou suporte contínuo após a entrega?",
-    a: "Sim. Oferecemos planos de evolução e suporte contínuos para monitorar, aprimorar e dar longevidade às soluções entregues.",
-  },
+    q: "Posso ver exemplos de trabalhos anteriores?",
+    a: "Claro! Temos casos de sucesso documentados e podemos agendar uma conversa para mostrar exemplos relevantes para seu setor. Alguns clientes também estão disponíveis para referência."
+  }
 ];
 
 const containerVariants = {
@@ -57,11 +57,15 @@ const FAQ = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">Tire dúvidas</span>
-          <h2 className="text-2xl md:text-3xl font-semibold">FAQ</h2>
+          <span className="inline-block rounded-full border border-[#F8F8FF]/30 px-3 py-1 text-xs tracking-wide text-[#F8F8FF]/70">
+            Tire dúvidas
+          </span>
+          <h2 className="text-2xl md:text-3xl font-semibold text-[#F8F8FF]">
+            FAQ
+          </h2>
         </motion.header>
-        
-        <motion.div
+
+        <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -69,15 +73,12 @@ const FAQ = () => {
         >
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-              >
+              <motion.div key={idx} variants={itemVariants}>
                 <AccordionItem value={`item-${idx}`}>
-                  <AccordionTrigger className="text-left hover:text-foreground transition-colors duration-200">
+                  <AccordionTrigger className="text-left hover:text-[#F8F8FF] transition-colors duration-200 text-[#F8F8FF]/90">
                     {item.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-[#F8F8FF]/70">
                     {item.a}
                   </AccordionContent>
                 </AccordionItem>

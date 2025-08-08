@@ -57,7 +57,9 @@ const ICP = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">Quem atendemos</span>
+          <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">
+            Quem atendemos
+          </span>
           <h2 className="text-3xl md:text-4xl font-bold">
             Especialistas em resolver dores reais
           </h2>

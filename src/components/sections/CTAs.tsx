@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Clock, Shield } from "lucide-react";
+import { ArrowRight, CheckCircle, Clock, Shield, Star, Zap, Users, TrendingUp } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
       delayChildren: 0.2
     }
   }
@@ -19,17 +19,26 @@ const buttonVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5
+      duration: 0.6,
+      ease: "easeOut"
     }
   }
 };
 
 const CTAs = () => {
   return (
-    <section id="ctas" className="py-20 bg-gradient-to-b from-background to-background/50">
-      <div className="container text-center space-y-12">
+    <section id="ctas" className="py-20 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-accent/3 rounded-full blur-2xl" />
+        <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-accent/4 rounded-full blur-xl" />
+      </div>
+
+      <div className="container relative">
         <motion.header 
-          className="space-y-6"
+          className="text-center mb-16 space-y-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -46,30 +55,45 @@ const CTAs = () => {
           </p>
         </motion.header>
 
-        {/* Trust indicators */}
+        {/* Trust indicators with enhanced design */}
         <motion.div 
-          className="flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-muted-foreground"
+          className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-green-500" />
-            Resposta em até 24 horas
-          </div>
-          <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-blue-500" />
-            Diagnóstico gratuito
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle className="w-4 h-4 text-purple-500" />
-            Sem compromisso
-          </div>
+          <motion.div 
+            className="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-green-500/10 to-green-600/5 border border-green-500/20"
+            whileHover={{ scale: 1.05, y: -2 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Clock className="w-5 h-5 text-green-500" />
+            <span className="text-sm font-medium text-foreground">Resposta em até 24 horas</span>
+          </motion.div>
+          
+          <motion.div 
+            className="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-blue-500/10 to-blue-600/5 border border-blue-500/20"
+            whileHover={{ scale: 1.05, y: -2 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Shield className="w-5 h-5 text-blue-500" />
+            <span className="text-sm font-medium text-foreground">Diagnóstico gratuito</span>
+          </motion.div>
+          
+          <motion.div 
+            className="flex items-center gap-3 p-3 rounded-xl bg-gradient-to-r from-purple-500/10 to-purple-600/5 border border-purple-500/20"
+            whileHover={{ scale: 1.05, y: -2 }}
+            transition={{ duration: 0.2 }}
+          >
+            <CheckCircle className="w-5 h-5 text-purple-500" />
+            <span className="text-sm font-medium text-foreground">Sem compromisso</span>
+          </motion.div>
         </motion.div>
 
+        {/* Main CTA Buttons */}
         <motion.div 
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -79,64 +103,96 @@ const CTAs = () => {
             <Button 
               variant="hero" 
               size="lg" 
-              className="text-base px-10 py-7 text-lg font-semibold w-full sm:w-auto group"
+              className="text-base px-10 py-7 text-lg font-semibold w-full sm:w-auto group relative overflow-hidden"
             >
-              Agende um diagnóstico gratuito
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative flex items-center gap-3">
+                <Zap className="w-5 h-5" />
+                Agende um diagnóstico gratuito
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+              </span>
             </Button>
           </motion.div>
+          
           <motion.div variants={buttonVariants} className="w-full sm:w-auto">
             <Button 
               variant="secondary" 
               size="lg" 
-              className="text-base px-10 py-7 text-lg font-semibold w-full sm:w-auto group"
+              className="text-base px-10 py-7 text-lg font-semibold w-full sm:w-auto group relative overflow-hidden"
             >
-              Fale com um especialista
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative flex items-center gap-3">
+                <Users className="w-5 h-5" />
+                Fale com um especialista
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+              </span>
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Additional CTA */}
+        {/* Enhanced Additional CTA */}
         <motion.div 
-          className="mt-12 p-8 rounded-2xl bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20"
+          className="max-w-4xl mx-auto p-8 rounded-3xl bg-gradient-to-br from-accent/10 via-accent/5 to-accent/10 border border-accent/20 relative overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-xl font-semibold mb-3">
-            Precisa de uma solução urgente?
-          </h3>
-          <p className="text-muted-foreground mb-6">
-            Temos slots disponíveis para projetos prioritários. Entre em contato e vamos acelerar seu projeto.
-          </p>
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Button 
-              variant="hero" 
-              size="lg" 
-              className="group"
-            >
-              Solicitar orçamento urgente
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-            </Button>
-          </motion.div>
+          {/* Background decorative elements */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/5 rounded-full blur-xl" />
+          
+          <div className="relative">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+              <h3 className="text-xl font-semibold text-accent">Projeto urgente?</h3>
+            </div>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              Temos slots disponíveis para projetos prioritários. Entre em contato e vamos acelerar seu projeto com nossa equipe dedicada.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }} 
+                transition={{ duration: 0.2 }}
+                className="w-full sm:w-auto"
+              >
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="w-full sm:w-auto group"
+                >
+                  <span className="flex items-center gap-3">
+                    <TrendingUp className="w-5 h-5" />
+                    Solicitar orçamento urgente
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                  </span>
+                </Button>
+              </motion.div>
+              
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Star className="w-4 h-4 text-yellow-500" />
+                <span>Prioridade garantida</span>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
+        {/* Bottom trust statement */}
         <motion.div 
-          className="mt-8 text-center"
+          className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm text-muted-foreground">
-            Seus dados estão 100% seguros. Não compartilhamos com terceiros.
-          </p>
+          <div className="inline-flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-accent/5 to-accent/10 border border-accent/20">
+            <Shield className="w-4 h-4 text-accent" />
+            <p className="text-sm text-muted-foreground">
+              Seus dados estão 100% seguros. Não compartilhamos com terceiros.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

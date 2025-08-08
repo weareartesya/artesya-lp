@@ -93,7 +93,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.div 
-          className="font-serif text-4xl md:text-5xl opacity-90 select-none text-[#F8F8FF]"
+          className="font-serif text-4xl md:text-5xl opacity-90 select-none"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -102,7 +102,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.h1 
-          className="mx-auto max-w-5xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-[#F8F8FF]"
+          className="mx-auto max-w-5xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -115,7 +115,7 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p 
-          className="mx-auto max-w-3xl text-lg md:text-xl text-[#F8F8FF]/80 leading-relaxed"
+          className="mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -159,7 +159,7 @@ const Hero = () => {
 
         {/* Trust indicators */}
         <motion.div 
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-[#F8F8FF]/70"
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-muted-foreground"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 1.0 }}
@@ -184,9 +184,9 @@ const Hero = () => {
           animate={{ y: [0, 10, 0] }} 
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-[#F8F8FF]/30 rounded-full flex justify-center">
+          <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
             <motion.div 
-              className="w-1 h-3 bg-[#F8F8FF]/50 rounded-full mt-2"
+              className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2"
               animate={{ y: [0, 12, 0] }} 
               transition={{ duration: 2, repeat: Infinity }} 
             />
