@@ -78,7 +78,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      <div className="relative container text-center space-y-6 pt-24">
+      <div className="relative container text-center space-y-4 sm:space-y-6 pt-20 sm:pt-24 px-4">
         {/* Badge with animation */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 
@@ -86,14 +86,14 @@ const Hero = () => {
           transition={{ duration: 0.6 }}
           className="inline-block"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#F8F8FF]/30 bg-[#F8F8FF]/10 px-4 py-2 text-sm font-medium text-[#F8F8FF]">
-            <span className="w-2 h-2 bg-[#F8F8FF] rounded-full animate-pulse"></span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#F8F8FF]/30 bg-[#F8F8FF]/10 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-[#F8F8FF]">
+            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#F8F8FF] rounded-full animate-pulse"></span>
             Transformando desafios em soluções
           </span>
         </motion.div>
 
         <motion.div 
-          className="font-serif text-4xl md:text-5xl opacity-90 select-none"
+          className="font-serif text-2xl sm:text-3xl md:text-4xl opacity-90 select-none"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -102,7 +102,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.h1 
-          className="mx-auto max-w-5xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight"
+          className="mx-auto max-w-5xl text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -115,7 +115,7 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p 
-          className="mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+          className="mx-auto max-w-3xl text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed px-4"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -124,7 +124,7 @@ const Hero = () => {
         </motion.p>
 
         <motion.div 
-          className="flex items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 max-w-2xl mx-auto px-4"
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -133,26 +133,28 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }} 
             transition={{ duration: 0.2 }}
+            className="w-full sm:w-auto"
           >
             <Button 
               variant="hero" 
               size="lg" 
-              className="text-base px-10 py-7 text-lg font-semibold"
+              className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 text-base sm:text-lg font-semibold min-h-[48px] sm:min-h-[56px]"
             >
-              Agende um diagnóstico gratuito
+              <span className="text-center">Agende um diagnóstico gratuito</span>
             </Button>
           </motion.div>
           <motion.div 
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }} 
             transition={{ duration: 0.2 }}
+            className="w-full sm:w-auto"
           >
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-base px-10 py-7 text-lg font-semibold"
+              className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 text-base sm:text-lg font-semibold min-h-[48px] sm:min-h-[56px]"
             >
-              Veja nossos casos de sucesso
+              <span className="text-center">Veja nossos casos de sucesso</span>
             </Button>
           </motion.div>
         </motion.div>

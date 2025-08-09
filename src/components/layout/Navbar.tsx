@@ -54,10 +54,9 @@ const Navbar = () => {
               href={item.href}
               className="relative group text-sm font-medium text-[#F8F8FF]/70 hover:text-[#F8F8FF] transition-colors duration-200"
               whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.3 }}
             >
               {item.label}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#F8F8FF] transition-all duration-300 group-hover:w-full" />

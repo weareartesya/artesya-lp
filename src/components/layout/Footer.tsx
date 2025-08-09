@@ -147,10 +147,9 @@ const Footer = () => {
                         href={item.href}
                         className="block text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
                         whileHover={{ x: 5 }}
-                        transition={{ duration: 0.2 }}
                         initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
+                        transition={{ delay: index * 0.1, duration: 0.3 }}
                         viewport={{ once: true }}
                       >
                         <span className="relative">

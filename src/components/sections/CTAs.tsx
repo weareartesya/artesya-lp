@@ -20,7 +20,7 @@ const buttonVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut"
+      ease: [0.25, 0.46, 0.45, 0.94]
     }
   }
 };
@@ -93,38 +93,50 @@ const CTAs = () => {
 
         {/* Main CTA Buttons */}
         <motion.div 
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, staggerChildren: 0.15 }}
+          viewport={{ once: true }}
         >
-          <motion.div variants={buttonVariants} className="w-full sm:w-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="w-full max-w-sm sm:w-auto"
+          >
             <Button 
               variant="hero" 
               size="lg" 
-              className="text-base px-10 py-7 text-lg font-semibold w-full sm:w-auto group relative overflow-hidden"
+              className="text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg font-semibold w-full sm:w-auto group relative overflow-hidden min-h-[56px]"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative flex items-center gap-3">
-                <Zap className="w-5 h-5" />
-                Agende um diagnóstico gratuito
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+              <span className="relative flex items-center justify-center gap-2 sm:gap-3">
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="text-center leading-tight">Agende um diagnóstico gratuito</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
               </span>
             </Button>
           </motion.div>
           
-          <motion.div variants={buttonVariants} className="w-full sm:w-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="w-full max-w-sm sm:w-auto"
+          >
             <Button 
               variant="secondary" 
               size="lg" 
-              className="text-base px-10 py-7 text-lg font-semibold w-full sm:w-auto group relative overflow-hidden"
+              className="text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg font-semibold w-full sm:w-auto group relative overflow-hidden min-h-[56px]"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative flex items-center gap-3">
-                <Users className="w-5 h-5" />
-                Fale com um especialista
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+              <span className="relative flex items-center justify-center gap-2 sm:gap-3">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                <span className="text-center leading-tight">Fale com um especialista</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
               </span>
             </Button>
           </motion.div>

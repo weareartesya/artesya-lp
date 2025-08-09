@@ -79,24 +79,27 @@ const Metrics = () => {
           </p>
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          {metrics.map((m, index) => (
-            <motion.div 
-              key={m.value} 
-              className="group relative"
-              variants={cardVariants}
-              whileHover={{ 
-                scale: 1.05, 
-                transition: { duration: 0.3 } 
-              }}
-              whileTap={{ scale: 0.98 }}
-            >
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, staggerChildren: 0.1 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            {metrics.map((m, index) => (
+              <motion.div 
+                key={m.value} 
+                className="group relative"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  transition: { duration: 0.3 } 
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
               <div className="relative rounded-2xl border border-border/20 bg-background/30 p-8 text-center shadow-elegant overflow-hidden">
                 <div className={`absolute inset-0 bg-gradient-to-br ${m.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
                 <div className="relative mb-4 flex justify-center">

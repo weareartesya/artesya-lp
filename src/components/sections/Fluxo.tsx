@@ -65,7 +65,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut"
+      ease: [0.25, 0.46, 0.45, 0.94]
     }
   }
 };
@@ -118,16 +118,19 @@ const Fluxo = () => {
 
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, staggerChildren: 0.15 }}
           viewport={{ once: true, amount: 0.3 }}
         >
           {steps.map((step, index) => (
             <motion.div 
               key={step.title} 
               className="group relative"
-              variants={cardVariants}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true }}
               whileHover={{ 
                 scale: 1.05, 
                 y: -8,
@@ -135,7 +138,6 @@ const Fluxo = () => {
                 transition: { duration: 0.3 }
               }}
               whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
             >
               {/* Connection lines for desktop */}
               <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-accent/30 to-transparent transform -translate-y-1/2 z-0" />

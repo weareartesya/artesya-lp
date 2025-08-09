@@ -48,10 +48,10 @@ const cardVariants = {
 
 const ICP = () => {
   return (
-    <section id="icp" className="py-20">
-      <div className="container max-w-6xl">
+    <section id="icp" className="py-12 sm:py-16 lg:py-20">
+      <div className="container max-w-6xl px-4">
         <motion.header 
-          className="text-center mb-16 space-y-4"
+          className="text-center mb-12 sm:mb-16 space-y-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -60,25 +60,25 @@ const ICP = () => {
           <span className="inline-block rounded-full border border-border/30 px-3 py-1 text-xs tracking-wide text-muted-foreground">
             Quem atendemos
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
             Especialistas em resolver dores reais
           </h2>
-          <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-3xl text-base sm:text-lg text-muted-foreground px-4">
             Somos especialistas em resolver dores de pequenas e médias empresas de tecnologia, consultorias, profissionais digitais e negócios de serviços operacionais que precisam sair do improviso, automatizar processos e escalar sem perder controle.
           </p>
         </motion.header>
 
-        {/* Pirâmide invertida layout */}
+        {/* Layout responsivo com melhor distribuição */}
         <motion.div 
-          className="flex flex-col items-center space-y-8"
+          className="flex flex-col items-center space-y-6 sm:space-y-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {/* Primeira linha - 3 cards */}
+          {/* Layout para mobile: 1 coluna, tablet: 2 colunas, desktop: 3 colunas */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full"
             variants={cardVariants}
           >
             {setores.slice(0, 3).map((setor, index) => (
@@ -86,9 +86,9 @@ const ICP = () => {
                 key={setor.titulo}
                 variants={cardVariants}
                 whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  scale: 1.02, 
+                  y: -4,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
                   transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.98 }}
@@ -102,11 +102,11 @@ const ICP = () => {
                   {/* Border effect on hover */}
                   <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-lg transition-colors duration-300" />
                   
-                  <CardContent className="p-6 relative">
-                    <h3 className="text-xl font-semibold mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
+                  <CardContent className="p-4 sm:p-6 relative">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
                       {setor.titulo}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                       {setor.descricao}
                     </p>
                   </CardContent>
@@ -115,9 +115,9 @@ const ICP = () => {
             ))}
           </motion.div>
 
-          {/* Segunda linha - 2 cards centralizados */}
+          {/* Últimos dois itens em layout centralizado */}
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full max-w-4xl"
             variants={cardVariants}
           >
             {setores.slice(3, 5).map((setor, index) => (
@@ -125,9 +125,9 @@ const ICP = () => {
                 key={setor.titulo}
                 variants={cardVariants}
                 whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                  scale: 1.02, 
+                  y: -4,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
                   transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.98 }}
@@ -141,11 +141,11 @@ const ICP = () => {
                   {/* Border effect on hover */}
                   <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/30 rounded-lg transition-colors duration-300" />
                   
-                  <CardContent className="p-6 relative">
-                    <h3 className="text-xl font-semibold mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
+                  <CardContent className="p-4 sm:p-6 relative">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-accent group-hover:text-accent/80 transition-colors duration-300">
                       {setor.titulo}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                       {setor.descricao}
                     </p>
                   </CardContent>
