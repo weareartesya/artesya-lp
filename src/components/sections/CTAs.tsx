@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Clock, Shield, Star, Zap, Users, TrendingUp } from "lucide-react";
 
@@ -110,13 +111,16 @@ const CTAs = () => {
               variant="hero" 
               size="lg" 
               className="text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg font-semibold w-full sm:w-auto group relative overflow-hidden min-h-[56px]"
+              asChild
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative flex items-center justify-center gap-2 sm:gap-3">
-                <Zap className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                <span className="text-center leading-tight">Agende um diagnóstico gratuito</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
-              </span>
+              <Link to="/agora-qualificacao">
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative flex items-center justify-center gap-2 sm:gap-3">
+                  <Zap className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span className="text-center leading-tight">Agende um diagnóstico gratuito</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+                </span>
+              </Link>
             </Button>
           </motion.div>
           

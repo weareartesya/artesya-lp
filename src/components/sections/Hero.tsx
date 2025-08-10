@@ -1,5 +1,6 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
@@ -139,8 +140,11 @@ const Hero = () => {
               variant="hero" 
               size="lg" 
               className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 text-base sm:text-lg font-semibold min-h-[48px] sm:min-h-[56px]"
+              asChild
             >
-              <span className="text-center">Agende um diagnóstico gratuito</span>
+              <Link to="/agora-qualificacao">
+                <span className="text-center">Agende um diagnóstico gratuito</span>
+              </Link>
             </Button>
           </motion.div>
           <motion.div 
