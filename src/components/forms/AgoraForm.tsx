@@ -11,6 +11,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 const formSchema = z.object({
   nome: z.string().min(2, 'Informe ao menos 2 caracteres.'),
@@ -79,6 +81,7 @@ export default function AgoraForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const { control, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -125,28 +128,40 @@ export default function AgoraForm() {
 
   if (isSubmitted && recommendation) {
     return (
-      <Card className="max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle className="text-center text-green-600">Recomendação Inicial</CardTitle>
-        </CardHeader>
-        <CardContent className="text-center space-y-4">
-          <div className="p-6 bg-green-50 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">Produto Recomendado:</h3>
-            <p className="text-lg text-primary">{recommendation.product}</p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Prioridade: {recommendation.priority} (Score: {recommendation.score})
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-start mb-4">
+          <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="gap-2">
+            <ArrowLeft className="w-4 h-4" /> Fechar e voltar
+          </Button>
+        </div>
+        <Card className="max-w-2xl mx-auto">
+          <CardHeader>
+            <CardTitle className="text-center text-green-600">Recomendação Inicial</CardTitle>
+          </CardHeader>
+          <CardContent className="text-center space-y-4">
+            <div className="p-6 bg-green-50 rounded-lg">
+              <h3 className="text-xl font-semibold mb-2">Produto Recomendado:</h3>
+              <p className="text-lg text-primary">{recommendation.product}</p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Prioridade: {recommendation.priority} (Score: {recommendation.score})
+              </p>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Nossa equipe entrará em contato em breve para detalhar a proposta personalizada.
             </p>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Nossa equipe entrará em contato em breve para detalhar a proposta personalizada.
-          </p>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
   return (
     <div className="max-w-4xl mx-auto">
+      <div className="flex justify-start mb-4">
+        <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="gap-2">
+          <ArrowLeft className="w-4 h-4" /> Fechar e voltar
+        </Button>
+      </div>
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Agende sua Ágora — qualificação rápida</h2>
         <p className="text-lg text-muted-foreground">
