@@ -71,8 +71,8 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }} 
             transition={{ duration: 0.2 }}
           >
-            <Button variant="hero" size="sm" className="font-medium">
-              Fale conosco
+            <Button variant="hero" size="sm" className="font-medium" asChild>
+              <Link to="/agora-qualificacao">Fale conosco</Link>
             </Button>
           </motion.div>
 
@@ -114,8 +114,8 @@ const Navbar = () => {
             transition={{ delay: navItems.length * 0.1 }} 
             className="pt-4"
           >
-            <Button variant="hero" size="sm" className="w-full font-medium">
-              Fale conosco
+            <Button variant="hero" size="sm" className="w-full font-medium" asChild>
+              <Link to="/agora-qualificacao">Fale conosco</Link>
             </Button>
           </motion.div>
         </div>

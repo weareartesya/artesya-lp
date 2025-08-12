@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const produtos = [
   {
@@ -170,9 +171,12 @@ const Produtos = () => {
                     <Button 
                       variant="outline" 
                       className="w-full group/btn"
+                      asChild
                     >
-                      <span>{p.cta}</span>
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                      <Link to="/agora-qualificacao">
+                        <span>{p.cta}</span>
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
+                      </Link>
                     </Button>
                   </motion.div>
                 </CardContent>
@@ -192,15 +196,18 @@ const Produtos = () => {
           <p className="text-lg text-muted-foreground mb-4">
             Não encontrou o que procura?
           </p>
-          <motion.a 
-            href="#contato" 
-            className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors duration-200 font-medium"
+          <motion.div 
             whileHover={{ x: 5 }}
             transition={{ duration: 0.2 }}
           >
-            Fale conosco sobre sua necessidade específica
-            <ArrowRight className="w-4 h-4" />
-          </motion.a>
+            <Link 
+              to="/agora-qualificacao"
+              className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors duration-200 font-medium"
+            >
+              Fale conosco sobre sua necessidade específica
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </section>
