@@ -14,7 +14,6 @@ import { supabase } from '@/lib/supabase';
 
 const formSchema = z.object({
   nome: z.string().min(2, 'Informe ao menos 2 caracteres.'),
-  empresa: z.string().min(2, 'Informe o nome da empresa ou "autônomo".'),
   email: z.string().email('Informe um e-mail válido.'),
   whatsapp: z.string().optional().refine((val) => {
     if (!val) return true;
@@ -25,12 +24,8 @@ const formSchema = z.object({
     return /^https?:\/\/.+$/.test(val);
   }, 'Use http:// ou https:// no início.'),
   segmento: z.enum(['PMEs de tecnologia', 'Empreendedor/Profissional liberal', 'Serviços operacionais']),
-  tamanho_time: z.enum(['1–3', '4–10', '11–30', '31+']),
-  faturamento: z.enum(['< R$ 300k', 'R$ 300k–1,2M', 'R$ 1,2M–4,8M', '> R$ 4,8M']),
-  objetivo: z.enum(['Validar ideia (protótipo)', 'Construir MVP/sistema', 'Automatizar processos', 'Suporte/evolução contínua']),
   urgencia: z.enum(['Imediato', '30 dias', '60–90 dias', '90+ dias']),
   orcamento: z.enum(['até R$ 5k', 'R$ 5–10k', 'R$ 10–20k', 'R$ 20k+']),
-  stack_atual: z.string().optional(),
   dor_principal: z.string().min(10, 'Conte um pouco mais (mín. 10 caracteres).'),
   decisor: z.enum(['Sim', 'Em conjunto', 'Não']),
   consentimento: z.boolean().refine(val => val === true, 'É necessário concordar com a Política de Privacidade')
@@ -52,16 +47,14 @@ const formatPhone = (value: string) => {
 };
 
 const calculateRecommendation = (data: FormData): Recommendation => {
-  // Scoring logic
+  // Scoring logic ajustado para campos restantes
   const scoring = {
-    porte: { '1–3': 1, '4–10': 2, '11–30': 3, '31+': 4 },
     orcamento: { 'até R$ 5k': 1, 'R$ 5–10k': 2, 'R$ 10–20k': 3, 'R$ 20k+': 4 },
     urgencia: { 'Imediato': 3, '30 dias': 3, '60–90 dias': 2, '90+ dias': 1 },
-    decisor: { 'Sim': 3, 'Em conjunto': 2, 'Não': 1 }
-  };
+    decisor: { 'Sim': 3, 'Em conjunto': 2, 'Não': 1 },
+  } as const;
 
-  const score = 
-    scoring.porte[data.tamanho_time] +
+  const score =
     scoring.orcamento[data.orcamento] +
     scoring.urgencia[data.urgencia] +
     scoring.decisor[data.decisor];
@@ -70,22 +63,13 @@ const calculateRecommendation = (data: FormData): Recommendation => {
   if (score >= 10) priority = 'A (quente)';
   else if (score >= 7) priority = 'B (morno)';
 
-  // Product recommendation logic
+  // Recomendação baseada apenas em orçamento/urgência
   let product = 'Essentia';
-  
-  if (data.objetivo === 'Validar ideia (protótipo)' && 
-      ['até R$ 5k', 'R$ 5–10k'].includes(data.orcamento) && 
-      ['Imediato', '30 dias'].includes(data.urgencia)) {
+  if (
+    ['até R$ 5k', 'R$ 5–10k'].includes(data.orcamento) &&
+    ['Imediato', '30 dias'].includes(data.urgencia)
+  ) {
     product = 'Essentia Light';
-  } else if (data.objetivo === 'Validar ideia (protótipo)' && 
-             ['R$ 10–20k', 'R$ 20k+'].includes(data.orcamento)) {
-    product = 'Essentia';
-  } else if (['Construir MVP/sistema', 'Automatizar processos'].includes(data.objetivo) && 
-             (['R$ 10–20k', 'R$ 20k+'].includes(data.orcamento) || 
-              ['11–30', '31+'].includes(data.tamanho_time))) {
-    product = 'Fábrica Modularis';
-  } else if (data.objetivo === 'Suporte/evolução contínua') {
-    product = 'Continuum Care';
   }
 
   return { product, priority, score };
@@ -191,22 +175,6 @@ export default function AgoraForm() {
                 {errors.nome && <p className="text-sm text-red-500 mt-1">{errors.nome.message}</p>}
               </div>
 
-              {/* Empresa */}
-              <div className="md:col-span-2">
-                <Label htmlFor="empresa">Empresa / Atuação</Label>
-                <Controller
-                  name="empresa"
-                  control={control}
-                  render={({ field }) => (
-                    <Input
-                      {...field}
-                      placeholder='Nome do negócio (ou "autônomo")'
-                      className={errors.empresa ? 'border-red-500' : ''}
-                    />
-                  )}
-                />
-                {errors.empresa && <p className="text-sm text-red-500 mt-1">{errors.empresa.message}</p>}
-              </div>
 
               {/* Email */}
               <div>
@@ -284,74 +252,8 @@ export default function AgoraForm() {
                 {errors.segmento && <p className="text-sm text-red-500 mt-1">{errors.segmento.message}</p>}
               </div>
 
-              {/* Tamanho do time */}
-              <div>
-                <Label htmlFor="tamanho_time">Tamanho do time</Label>
-                <Controller
-                  name="tamanho_time"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className={errors.tamanho_time ? 'border-red-500' : ''}>
-                        <SelectValue placeholder="Selecione..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1–3">1–3</SelectItem>
-                        <SelectItem value="4–10">4–10</SelectItem>
-                        <SelectItem value="11–30">11–30</SelectItem>
-                        <SelectItem value="31+">31+</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.tamanho_time && <p className="text-sm text-red-500 mt-1">{errors.tamanho_time.message}</p>}
-              </div>
 
-              {/* Faturamento */}
-              <div>
-                <Label htmlFor="faturamento">Faixa de faturamento anual</Label>
-                <Controller
-                  name="faturamento"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className={errors.faturamento ? 'border-red-500' : ''}>
-                        <SelectValue placeholder="Selecione..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="< R$ 300k">&lt; R$ 300k</SelectItem>
-                        <SelectItem value="R$ 300k–1,2M">R$ 300k–1,2M</SelectItem>
-                        <SelectItem value="R$ 1,2M–4,8M">R$ 1,2M–4,8M</SelectItem>
-                        <SelectItem value="> R$ 4,8M">&gt; R$ 4,8M</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.faturamento && <p className="text-sm text-red-500 mt-1">{errors.faturamento.message}</p>}
-              </div>
 
-              {/* Objetivo */}
-              <div>
-                <Label htmlFor="objetivo">Objetivo principal</Label>
-                <Controller
-                  name="objetivo"
-                  control={control}
-                  render={({ field }) => (
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className={errors.objetivo ? 'border-red-500' : ''}>
-                        <SelectValue placeholder="Selecione..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Validar ideia (protótipo)">Validar ideia (protótipo)</SelectItem>
-                        <SelectItem value="Construir MVP/sistema">Construir MVP/sistema</SelectItem>
-                        <SelectItem value="Automatizar processos">Automatizar processos</SelectItem>
-                        <SelectItem value="Suporte/evolução contínua">Suporte/evolução contínua</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-                {errors.objetivo && <p className="text-sm text-red-500 mt-1">{errors.objetivo.message}</p>}
-              </div>
 
               {/* Urgência */}
               <div>
@@ -399,23 +301,6 @@ export default function AgoraForm() {
                 {errors.orcamento && <p className="text-sm text-red-500 mt-1">{errors.orcamento.message}</p>}
               </div>
 
-              {/* Stack atual */}
-              <div className="md:col-span-2">
-                <Label htmlFor="stack_atual">Stack/Ferramentas atuais (opcional)</Label>
-                <Controller
-                  name="stack_atual"
-                  control={control}
-                  render={({ field }) => (
-                    <Textarea
-                      {...field}
-                      placeholder="ex.: planilhas, Notion, Zapier, ERP etc."
-                      rows={3}
-                      className={errors.stack_atual ? 'border-red-500' : ''}
-                    />
-                  )}
-                />
-                {errors.stack_atual && <p className="text-sm text-red-500 mt-1">{errors.stack_atual.message}</p>}
-              </div>
 
               {/* Dor principal */}
               <div className="md:col-span-2">
